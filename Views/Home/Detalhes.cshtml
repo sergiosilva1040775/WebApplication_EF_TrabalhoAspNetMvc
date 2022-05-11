@@ -1,0 +1,76 @@
+﻿@model final.Models.carsLicitacoes
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+
+
+<div>
+   <h1>Detalhes</h1>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Marca
+         @*   @Html.DisplayNameFor(model => model.NomeMarca)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.veiculosParaVenda  .NomeMarca )
+        </dd>
+        <dt class = "col-sm-2">
+              Modelo
+            @*@Html.DisplayNameFor(model => model.NomeModelo)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.veiculosParaVenda .NomeModelo)
+        </dd>
+        <dt class = "col-sm-2">
+            Ano
+            @*@Html.DisplayNameFor(model => model.Ano)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.veiculosParaVenda .Ano)
+        </dd>
+        <dt class = "col-sm-2">
+            Cilindrada
+            @*@Html.DisplayNameFor(model => model.Cilindrada)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.veiculosParaVenda .Cilindrada)
+        </dd>
+        <dt class = "col-sm-2">
+             Preço - Pagas e não bufa
+            @*@Html.DisplayNameFor(model => model.Preco)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.veiculosParaVenda .Preco)
+        </dd>
+        <dt class = "col-sm-2">
+              É para o estilo
+            @*@Html.DisplayNameFor(model => model.Categoria)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.veiculosParaVenda .Categoria  )
+        </dd>
+    </dl>
+</div>
+
+    <h4>Licitoes</h4>
+    <hr />
+
+        @foreach (Licitacoes  car in Model.Licitacoess  )
+    {
+
+        <tr>
+            <td>licitador: @car.licitador  </td>
+            <td>, valorLicitado: @car.valorLicitado  </td>
+     
+        </tr>
+        <br><br> 
+
+    }
+
+
+<div>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Voltar à lista de veículos</a>
+</div>

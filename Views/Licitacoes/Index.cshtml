@@ -1,0 +1,47 @@
+﻿@model IEnumerable<final.Models.Licitacoes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.licitador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valorLicitado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.veiculosParaVenda)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.licitador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorLicitado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.veiculosParaVenda.Ano)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LicitacoesId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LicitacoesId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LicitacoesId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

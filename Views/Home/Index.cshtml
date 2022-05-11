@@ -1,0 +1,70 @@
+﻿@model IEnumerable<final.Models.veiculosParaVenda>
+
+@{
+    ViewData["Title"] = "Lista de veiculos";
+}
+
+<h1>Lista de veiculos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Marca
+                @*@Html.DisplayNameFor(model => model.NomeMarca)*@
+            </th>
+            <th>
+                 Modelo
+                @*@Html.DisplayNameFor(model => model.NomeModelo)*@
+            </th>
+            <th>
+                Ano
+                @*@Html.DisplayNameFor(model => model.Ano)*@
+            </th>
+            <th>
+                Cilindrada
+                @*@Html.DisplayNameFor(model => model.Cilindrada)*@
+            </th>
+            <th>
+                Preço - Pagas e não bufa
+                @*@Html.DisplayNameFor(model => model.Preco)*@
+            </th>
+            <th>
+                É para o estilo
+                @*@Html.DisplayNameFor(model => model.Categoria)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           <td>
+                @Html.DisplayFor(modelItem => item.NomeMarca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeModelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ano)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cilindrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                  @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@item.VintageCarId">Details</a> *@
+                   <a asp-action="Detalhes" asp-route-id="@item.Id ">Ver Detalhes - licitações</a> 
+               @*         <a asp-action="CreateLicitacao" asp-route-id="@item.Id ">Licitações</a> *@
+                        @*<a asp-action="CreateLicitacao" asp-route-id>Licitações</a> *@
+                                            <a class="nav-link text-dark" asp-area="" asp-action="CreateLicitacao">Licitar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
