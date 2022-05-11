@@ -7,13 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final.Context;
 using final.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace final
 {
+    [Authorize]
     public class LicitacoesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+ 
         public LicitacoesController(ApplicationDbContext context)
         {
             _context = context;

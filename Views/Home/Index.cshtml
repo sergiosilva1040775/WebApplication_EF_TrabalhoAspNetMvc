@@ -55,14 +55,13 @@
                 @Html.DisplayFor(modelItem => item.Preco)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoria)
+                @Html.DisplayFor(modelItem => item.CategoriaId )
             </td>
             <td>
                   @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@item.VintageCarId">Details</a> *@
-                   <a asp-action="Detalhes" asp-route-id="@item.Id ">Ver Detalhes - licitações</a> 
-               @*         <a asp-action="CreateLicitacao" asp-route-id="@item.Id ">Licitações</a> *@
-                        @*<a asp-action="CreateLicitacao" asp-route-id>Licitações</a> *@
-                                            <a class="nav-link text-dark" asp-area="" asp-action="CreateLicitacao">Licitar</a>
+               
+                  <a asp-action="Detalhes" asp-route-id="@item.Id ">Ver Detalhes - licitações</a> 
+      
             </td>
         </tr>
 }
