@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final.Context;
 using final.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace final
+namespace final.Controllers
 {
-    [Authorize]
     public class CategoriasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +22,9 @@ namespace final
         // GET: Categorias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categoria.ToListAsync());
+              return _context.Categoria != null ? 
+                          View(await _context.Categoria.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Categoria'  is null.");
         }
 
         // GET: Categorias/Details/5
@@ -143,21 +143,21 @@ namespace final
         {
             if (_context.Categoria == null)
             {
-                return Problem("Entity set 'AppDbContext.Categoria'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Categoria'  is null.");
             }
             var categoria = await _context.Categoria.FindAsync(id);
             if (categoria != null)
             {
                 _context.Categoria.Remove(categoria);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoriaExists(int id)
         {
-            return _context.Categoria.Any(e => e.CategoriaId == id);
+          return (_context.Categoria?.Any(e => e.CategoriaId == id)).GetValueOrDefault();
         }
     }
 }

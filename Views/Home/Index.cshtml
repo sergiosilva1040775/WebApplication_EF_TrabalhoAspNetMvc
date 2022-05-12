@@ -1,4 +1,4 @@
-﻿@model IEnumerable<final.Models.veiculosParaVenda>
+﻿@model IEnumerable<final.Models.veiculosParaVenda >
 
 @{
     ViewData["Title"] = "Lista de veiculos";
@@ -26,13 +26,13 @@
                 @*@Html.DisplayNameFor(model => model.Cilindrada)*@
             </th>
             <th>
-                Preço - Pagas e não bufa
+                Preço k€
                 @*@Html.DisplayNameFor(model => model.Preco)*@
             </th>
-            <th>
-                É para o estilo
-                @*@Html.DisplayNameFor(model => model.Categoria)*@
-            </th>
+      @*      <th>
+            
+                Html.DisplayNameFor(model => model.CategoriaId)*
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -40,7 +40,7 @@
 @foreach (var item in Model) {
         <tr>
            <td>
-                @Html.DisplayFor(modelItem => item.NomeMarca)
+                @Html.DisplayFor(modelItem => item.NomeMarca  )
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NomeModelo)
@@ -54,9 +54,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Preco)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoriaId )
-            </td>
+     @*       <td>
+                @Html.DisplayFor(modelItem => item.CategoriaId   )
+            </td>*@
             <td>
                   @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@item.VintageCarId">Details</a> *@
                

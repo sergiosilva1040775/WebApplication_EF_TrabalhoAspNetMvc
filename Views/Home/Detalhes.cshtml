@@ -39,38 +39,61 @@
             @Html.DisplayFor(model => model.veiculosParaVenda .Cilindrada)
         </dd>
         <dt class = "col-sm-2">
-             Preço - Pagas e não bufa
+             Preço k€
             @*@Html.DisplayNameFor(model => model.Preco)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.veiculosParaVenda .Preco)
         </dd>
         <dt class = "col-sm-2">
-              É para o estilo
+              Número de licitações
             @*@Html.DisplayNameFor(model => model.Categoria)*@
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.veiculosParaVenda .Categoria  )
+              @Html.DisplayFor(model => model.Licitacoess.Count)
         </dd>
     </dl>
 </div>
 
     <h4>Licitoes</h4>
     <hr />
-
-        @foreach (Licitacoes  car in Model.Licitacoess  )
+    <table class="table" id="myTable" >
+        <thead>
+            <tr>
+                <td>Licitador: </td>
+                  <td>Valor Licitado:</td>
+            </tr>
+                    </thead>
+                            @foreach (Licitacoes  car in Model.Licitacoess  )
     {
 
         <tr>
-            <td>licitador: @car.licitador  </td>
-            <td>, valorLicitado: @car.valorLicitado  </td>
+            <td>@car.licitador  </td>
+            <td>@car.valorLicitado  </td>
      
         </tr>
-        <br><br> 
+      
 
     }
+
+
+
+            </table>
 
 
 <div>
     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Voltar à lista de veículos</a>
 </div>
+
+
+@section Scripts{
+    <script type ="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+<script type ="text/javascript" src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+
+}
+
