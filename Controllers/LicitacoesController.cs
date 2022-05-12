@@ -50,7 +50,7 @@ namespace final
         // GET: Licitacoes/Create
         public IActionResult Create()
         {
-            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "Ano");
+            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "NomeMarca");
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace final
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "Ano", licitacoes.veiculosParaVendaId);
+            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "NomeMarca", licitacoes.veiculosParaVendaId);
             return View(licitacoes);
         }
 
@@ -84,7 +84,7 @@ namespace final
             {
                 return NotFound();
             }
-            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "Ano", licitacoes.veiculosParaVendaId);
+            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "NomeMarca", licitacoes.veiculosParaVendaId);
             return View(licitacoes);
         }
 
@@ -120,7 +120,7 @@ namespace final
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "Ano", licitacoes.veiculosParaVendaId);
+            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "NomeMarca", licitacoes.veiculosParaVendaId);
             return View(licitacoes);
         }
 

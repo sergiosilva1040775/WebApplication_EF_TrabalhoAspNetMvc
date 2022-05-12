@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final.Context;
 using final.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace final.Controllers
 {
+    [Authorize]
     public class CategoriasController : Controller
     {
         private readonly ApplicationDbContext _context;

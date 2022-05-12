@@ -51,6 +51,11 @@ namespace final.Controllers
             return View(_context.veiculosParaVenda);
         }
 
+        public IActionResult licitar()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
