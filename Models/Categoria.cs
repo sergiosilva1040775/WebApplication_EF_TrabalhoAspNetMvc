@@ -9,10 +9,10 @@ namespace final.Models
         public int CategoriaId { get; set; }
 
         [Required, MaxLength(80, ErrorMessage = "Nome da categoria não pode exceder 80 caracteres")]
-
+        [Display(Name ="Nome Categoria")]
         public string CategoriaName { get; set; }
 
-        public List<veiculosParaVenda> veiculosParaVenda { get; set; }
+        public List<veiculosParaVenda>? veiculosParaVenda { get; set; }
 
     }
 }

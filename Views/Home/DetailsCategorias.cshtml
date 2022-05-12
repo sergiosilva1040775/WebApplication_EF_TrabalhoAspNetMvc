@@ -1,0 +1,75 @@
+﻿@model final.Models.carsCategoria
+
+@{
+    ViewData["Title"] = "Lista de veiculos/categoria";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Categoria</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Categorias.CategoriaId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Categorias.CategoriaName)
+        </dd>
+    </dl>
+</div>
+
+
+
+    <h4>Licitoes</h4>
+    <hr />
+    <table class="table" id="myTable" >
+        <thead>
+            <tr>
+                <td>Marca: </td>
+                  <td>Modelo:</td>
+                       <td>Cilindrada:</td>
+                              <td>Ano:</td>
+                                  <td>Preço (k€):</td>
+            </tr>
+                    </thead>
+                            @foreach (veiculosParaVenda  veiculosParaVendaLista in Model.veiculosParaVenda  )
+    {
+
+        <tr>
+            <td>@veiculosParaVendaLista.NomeMarca  </td>
+            <td>@veiculosParaVendaLista.NomeModelo  </td>
+                       <td>@veiculosParaVendaLista.Cilindrada  </td>
+                           <td>@veiculosParaVendaLista.Ano  </td>
+                                <td>@veiculosParaVendaLista.Preco   </td>
+     
+        </tr>
+      
+
+    }
+
+
+
+            </table>
+
+
+<div>
+    
+</div>
+
+
+<div>
+   
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts{
+    <script type ="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+<script type ="text/javascript" src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+
+}

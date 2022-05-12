@@ -1,0 +1,33 @@
+﻿@model IEnumerable<final.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Lista de categoria";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoriaName)
+            </td>
+            <td>
+           
+                <a asp-action="DetailsCategorias" asp-route-id="@item.CategoriaId">Ver lista de veiculos</a> 
+     
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

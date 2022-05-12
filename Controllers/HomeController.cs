@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using final.Context;
 using final.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace final.Controllers
 {
@@ -21,6 +19,7 @@ namespace final.Controllers
         {
             _context = context;
             _logger = logger;
+        
 
         }
         public async Task<IActionResult> Detalhes(int id)
@@ -44,15 +43,18 @@ namespace final.Controllers
             var liticao = await _context.Licitacoes.FromSqlRaw(query, id).ToListAsync();
             carsLicitacoesModel.Licitacoess = liticao;
             return View(carsLicitacoesModel);
+         
         }
 
         public IActionResult Index()
         {
+       
             return View(_context.veiculosParaVenda);
         }
-
-        public IActionResult licitar()
+        [Authorize]
+        public IActionResult licitar(int id)
         {
+            ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "NomeMarca", id);
             return View();
         }
 
@@ -61,10 +63,66 @@ namespace final.Controllers
             return View();
         }
 
+        public async Task<IActionResult> DetailsCategorias(int? id)
+        {
+            if (id == null || _context.Categoria == null)
+            {
+                return NotFound();
+            }
+
+            var categoria = await _context.Categoria
+                .FirstOrDefaultAsync(m => m.CategoriaId == id);
+            if (categoria == null)
+            {
+                return NotFound();
+            }
+            var categoriasCars = new carsCategoria();
+            string query = "SELECT * FROM veiculosParaVenda WHERE CategoriaId = {0}";
+            var veiculosParaVendalista = await _context.veiculosParaVenda .FromSqlRaw(query, id).ToListAsync();
+            categoriasCars.veiculosParaVenda = veiculosParaVendalista;
+            categoriasCars.Categorias = categoria;
+
+
+            return View(categoriasCars);
+        }
+
+        public async Task<IActionResult> listaCategorias()
+        {
+            return _context.Categoria != null ?
+                        View(await _context.Categoria.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Categoria'  is null.");
+        }
+
+        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("LicitacoesId,licitador,valorLicitado,veiculosParaVendaId")] Licitacoes licitacoes)
+        {
+
+    
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(licitacoes);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            //ViewData["veiculosParaVendaId"] = new SelectList(_context.Set<veiculosParaVenda>(), "Id", "NomeMarca", licitacoes.veiculosParaVendaId);
+            //return View(licitacoes);
+
+
+            return View(_context.veiculosParaVenda);
+        }
+
     }
 }
